@@ -14,15 +14,6 @@ extern "C" { // name mangle
 static uint64_t il2cpp_string_new_orig_offset;
 void* (*il2cpp_string_new_orig)(const char* text);
 
-//void* test_il2cpp_string_new(const char* text) {
-//	//init_logger(); // again
-//	LOG("Hello from il2cpp_string_new! - Creating text with name: %s\n", text);
-//	//free_logger(); // again
-//	auto tmp = PLH::FnCast(il2cpp_string_new_orig_offset, il2cpp_string_new_orig)(text);
-//	//auto tmp = il2cpp_string_new_orig(text);
-//	LOG("Created string with pointer: %p\n", tmp);
-//	return tmp;
-//}
 
 
 static void (*gunfire_orig)(void* self);
@@ -64,12 +55,8 @@ SAMPLEMOD_API int load(HANDLE logHandle, HMODULE gameAssembly) {
 	if (rv != 0) {
 		LOG("ERROR: failed to install open and fopen hooks. (%s)\n", funchook_error_message(funchook));
 		return -1;
-	}
-
-	
+	}	
 
 	LOG("Installed hooks!!\n");
-	// Close logger to flush to file
-	//free_logger();
 	return 0;
 }
