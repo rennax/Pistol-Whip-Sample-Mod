@@ -20,6 +20,65 @@ namespace il2cpp_utils {
 		return GetMethod(GetClassFromName(nameSpace.data(), className.data()), methodName, argsCount);
 	}
 
+	// Returns a legible string from an Il2CppException*
+	std::string ExceptionToString(Il2CppException* exp) {
+		char msg[EXCEPTION_MESSAGE_SIZE];
+		il2cpp_functions::format_exception(exp, msg, EXCEPTION_MESSAGE_SIZE);
+		// auto exception_message = csstrtostr(exp->message);
+		// return to_utf8(exception_message);
+		return msg;
+	}
+
+	FieldInfo* FindField(Il2CppClass* klass, std::string_view fieldName) {
+		if (!klass) return nullptr;
+		auto field = il2cpp_functions::class_get_field_from_name(klass, fieldName.data());
+		if (!field) {
+			LOG("could not find field %s in class %s (namespace '%s')!", fieldName.data(),
+				il2cpp_functions::class_get_name(klass), il2cpp_functions::class_get_namespace(klass));
+		}
+		return field;
+	}
+
+	bool SetFieldValue(Il2CppObject* instance, FieldInfo* field, void* value) {
+		if (!field) {
+			LOG("il2cpp_utils: SetFieldValue: Null field parameter!");
+			return false;
+		}
+		if (instance) {
+			il2cpp_functions::field_set_value(instance, field, value);
+		}
+		else { // Fallback to perform a static field set
+			il2cpp_functions::field_static_set_value(field, value);
+		}
+		return true;
+	}
+
+
+	bool SetFieldValue(Il2CppClass* klass, std::string_view fieldName, void* value) {
+		if (!klass) {
+			LOG("il2cpp_utils: SetFieldValue: Null klass parameter!");
+			return false;
+		}
+		auto field = FindField(klass, fieldName);
+		if (!field) return false;
+		return SetFieldValue(nullptr, field, value);
+	}
+
+	bool SetFieldValue(Il2CppObject* instance, std::string_view fieldName, void* value) {
+		if (!instance) {
+			LOG("il2cpp_utils: SetFieldValue: Null instance parameter!");
+			return false;
+		}
+		auto klass = il2cpp_functions::object_get_class(instance);
+		if (!klass) {
+			LOG("il2cpp_utils: SetFieldValue: Could not find object class!");
+			return false;
+		}
+		auto field = FindField(klass, fieldName);
+		if (!field) return false;
+		return SetFieldValue(instance, field, value);
+	}
+
 	Il2CppClass* GetClassFromName(const char* name_space, const char* type_name) {
 
 		auto dom = il2cpp_functions::domain_get();
@@ -45,6 +104,7 @@ namespace il2cpp_utils {
 		LOG("ERROR: il2cpp_utils: GetClassFromName: Could not find class with namepace: %s and name: %s", name_space, type_name);
 		return nullptr;
 	}
+
 	
 }
 

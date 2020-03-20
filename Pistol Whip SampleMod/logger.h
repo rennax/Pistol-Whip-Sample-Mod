@@ -1,10 +1,11 @@
 #ifndef LOGGING_H
 #define LOGGING_H
-#ifndef NO_LOGGING
+
 #include <windows.h>
+
+#ifdef _DEBUG
 static HANDLE log_handle;
 static char buffer[4096];
-
 inline void init_logger(HANDLE handle)
 {
 	log_handle = handle;
@@ -22,7 +23,7 @@ inline void free_logger()
 		FlushFileBuffers(log_handle); \
 	}
 #else
-inline void init_logger()
+inline void init_logger(HANDLE handle)
 {
 }
 

@@ -137,7 +137,7 @@ public:
 	inline static void (*profiler_install_allocation)(Il2CppProfileAllocFunc callback);
 	inline static void (*profiler_install_gc)(Il2CppProfileGCFunc callback, Il2CppProfileGCResizeFunc heap_resize_callback);
 	inline static void (*profiler_install_fileio)(Il2CppProfileFileIOFunc callback);
-	//inline static void (*profiler_install_thread)(Il2CppProfileThreadFunc start, Il2CppProfileThreadFunc end);
+	inline static void (*profiler_install_thread)(Il2CppProfileThreadFunc start, Il2CppProfileThreadFunc end);
 	inline static uint32_t(*property_get_flags)(PropertyInfo* prop);
 	inline static const MethodInfo* (*property_get_get_method)(PropertyInfo* prop);
 	inline static const MethodInfo* (*property_get_set_method)(PropertyInfo* prop);
@@ -204,12 +204,12 @@ public:
 	inline static void (*debugger_set_agent_options)(const char* options);
 	inline static bool (*is_debugger_attached)();
 	inline static void (*unity_install_unitytls_interface)(const void* unitytlsInterfaceStruct);
-	//inline static Il2CppCustomAttrInfo* (*custom_attrs_from_class)(Il2CppClass* klass);
-	//inline static Il2CppCustomAttrInfo* (*custom_attrs_from_method)(const MethodInfo* method);
-	//inline static Il2CppObject* (*custom_attrs_get_attr)(Il2CppCustomAttrInfo* ainfo, Il2CppClass* attr_klass);
-	//inline static bool (*custom_attrs_has_attr)(Il2CppCustomAttrInfo* ainfo, Il2CppClass* attr_klass);
-	//inline static Il2CppArray* (*custom_attrs_construct)(Il2CppCustomAttrInfo* cinfo);
-	//inline static void (*custom_attrs_free)(Il2CppCustomAttrInfo* ainfo);
+	inline static Il2CppCustomAttrInfo* (*custom_attrs_from_class)(Il2CppClass* klass);
+	inline static Il2CppCustomAttrInfo* (*custom_attrs_from_method)(const MethodInfo* method);
+	inline static Il2CppObject* (*custom_attrs_get_attr)(Il2CppCustomAttrInfo* ainfo, Il2CppClass* attr_klass);
+	inline static bool (*custom_attrs_has_attr)(Il2CppCustomAttrInfo* ainfo, Il2CppClass* attr_klass);
+	inline static Il2CppArray* (*custom_attrs_construct)(Il2CppCustomAttrInfo* cinfo);
+	inline static void (*custom_attrs_free)(Il2CppCustomAttrInfo* ainfo);
 
 	// MANUALLY DEFINED CONST DEFINITIONS
 	inline static const Il2CppType* (*class_get_type_const)(const Il2CppClass* klass);

@@ -151,14 +151,18 @@
     <ClCompile Include="il2cpp_utils.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="SampleMod.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="il2cpp_functions.hpp" />
+    <ClInclude Include="il2cpp_utils.hpp" />
     <ClInclude Include="logger.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SampleMod.h" />
+    <ClInclude Include="typedefs.h" />
+    <ClInclude Include="utils-functions.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\funchook.dll" />
