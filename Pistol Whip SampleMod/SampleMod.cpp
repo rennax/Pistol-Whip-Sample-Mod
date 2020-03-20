@@ -50,7 +50,7 @@ SAMPLEMOD_API int load(HANDLE logHandle, HMODULE gameAssembly) {
 	funchook = funchook_create();
 	gunfire_orig = (gunfire)il2cpp_utils::GetMethod("", "Gun", "Fire", 0)->methodPointer;
 	funchook_prepare(funchook, (void**)&gunfire_orig, gunfire_hook);
-	/* hook `open' and `fopen` */
+	
 	int rv = funchook_install(funchook, 0);
 	if (rv != 0) {
 		LOG("ERROR: failed to install open and fopen hooks. (%s)\n", funchook_error_message(funchook));

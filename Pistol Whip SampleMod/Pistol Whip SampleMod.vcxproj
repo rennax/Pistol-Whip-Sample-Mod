@@ -157,6 +157,7 @@
     <ClInclude Include="il2cpp_functions.hpp" />
     <ClInclude Include="logger.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SampleMod.h" />
   </ItemGroup>
   <ItemGroup>
